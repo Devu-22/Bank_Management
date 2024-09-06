@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Account{% endblock %}
+
+{% block body %}
+<h1 class="mt-5">Create a New Bank Account</h1>
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger mt-3">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<form method="POST" class="mt-4">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="account_number" class="form-label">Account Number:</label>
+        <input type="text" id="account_number" name="account_number" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="account_type" class="form-label">Account Type:</label>
+        <select id="account_type" name="account_type" class="form-select" required>
+            <option value="S">Savings</option>
+            <option value="C">Current</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Account</button>
+</form>
+{% endblock %}
